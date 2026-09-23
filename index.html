@@ -1,0 +1,847 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Учебник по HTML - конспект занятий 1 и 2"
+    />
+    <title>HTML: учебник - что мы изучили</title>
+    <style>
+      /* ============================================
+           Оформление учебника.
+           Мы ещё не проходили CSS - это просто
+           чтобы страницу было приятно читать.
+           ============================================ */
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: #f5f5f7;
+        color: #1a1a1a;
+        line-height: 1.7;
+        padding: 40px 20px;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        padding: 50px 60px;
+      }
+
+      /* ---------- Типографика ---------- */
+
+      h1 {
+        font-size: 2.2em;
+        margin-bottom: 10px;
+        color: #1a1a1a;
+      }
+
+      h2 {
+        font-size: 1.6em;
+        margin-top: 50px;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #4d6bfe;
+        color: #1a1a1a;
+      }
+
+      h3 {
+        font-size: 1.2em;
+        margin-top: 30px;
+        margin-bottom: 12px;
+        color: #4d6bfe;
+      }
+
+      h4 {
+        font-size: 1.05em;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        color: #333;
+      }
+
+      p {
+        margin-bottom: 14px;
+      }
+
+      ul,
+      ol {
+        margin-bottom: 14px;
+        padding-left: 28px;
+      }
+
+      li {
+        margin-bottom: 6px;
+      }
+
+      .subtitle {
+        color: #666;
+        font-style: italic;
+        margin-bottom: 30px;
+      }
+
+      /* ---------- Код ---------- */
+
+      code {
+        font-family: "Consolas", "Courier New", monospace;
+        background: #f0f4ff;
+        color: #2c46b8;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.9em;
+      }
+
+      pre {
+        background: #1e1e2e;
+        color: #e0e0e0;
+        padding: 18px 22px;
+        border-radius: 8px;
+        overflow-x: auto;
+        margin: 14px 0 20px;
+        font-family: "Consolas", "Courier New", monospace;
+        font-size: 0.9em;
+        line-height: 1.6;
+      }
+
+      pre code {
+        background: transparent;
+        color: inherit;
+        padding: 0;
+        font-size: inherit;
+      }
+
+      /* ---------- Блоки-заметки ---------- */
+
+      .note {
+        background: #eef4ff;
+        border-left: 4px solid #4d6bfe;
+        padding: 14px 20px;
+        border-radius: 6px;
+        margin: 20px 0;
+      }
+
+      .note strong {
+        color: #2c46b8;
+      }
+
+      .warning {
+        background: #fff9e6;
+        border-left: 4px solid #f0b400;
+        padding: 14px 20px;
+        border-radius: 6px;
+        margin: 20px 0;
+      }
+
+      .warning strong {
+        color: #8b6914;
+      }
+
+      .legacy {
+        background: #fdf2f2;
+        border-left: 4px solid #c62828;
+        padding: 14px 20px;
+        border-radius: 6px;
+        margin: 20px 0;
+      }
+
+      .legacy strong {
+        color: #a01a1a;
+      }
+
+      /* ---------- Оглавление ---------- */
+
+      .toc {
+        background: #fafbff;
+        border: 1px solid #e0e6ff;
+        border-radius: 8px;
+        padding: 20px 28px;
+        margin-bottom: 30px;
+      }
+
+      .toc h3 {
+        margin-top: 0;
+        margin-bottom: 12px;
+      }
+
+      .toc ol {
+        margin-bottom: 0;
+      }
+
+      .toc a {
+        color: #4d6bfe;
+        text-decoration: none;
+      }
+
+      .toc a:hover {
+        text-decoration: underline;
+      }
+
+      /* ---------- Ссылки ---------- */
+
+      a {
+        color: #4d6bfe;
+      }
+
+      /* ---------- Таблицы ---------- */
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 16px 0 24px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+      }
+
+      th {
+        background: #4d6bfe;
+        color: #ffffff;
+        padding: 12px 16px;
+        text-align: left;
+        font-weight: 600;
+        font-size: 0.95em;
+      }
+
+      td {
+        padding: 11px 16px;
+        border-bottom: 1px solid #eef0f5;
+        font-size: 0.95em;
+      }
+
+      tr:last-child td {
+        border-bottom: none;
+      }
+
+      tr:nth-child(even) td {
+        background: #fafbff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>HTML: учебник</h1>
+
+      <!-- ==================== ОГЛАВЛЕНИЕ ==================== -->
+      <div class="toc">
+        <h3>Содержание</h3>
+        <ol>
+          <li><a href="#intro">Что такое HTML</a></li>
+          <li><a href="#structure">Структура документа</a></li>
+          <li><a href="#metadata">Метаданные</a></li>
+          <li><a href="#text">Текст</a></li>
+          <li><a href="#formatting">Форматирование текста</a></li>
+          <li><a href="#lists">Списки</a></li>
+          <li><a href="#links">Ссылки</a></li>
+          <li><a href="#images">Изображения</a></li>
+          <li><a href="#legacy">Устаревшие теги</a></li>
+        </ol>
+      </div>
+
+      <!-- ==================== 1. ЧТО ТАКОЕ HTML ==================== -->
+      <h2 id="intro">1. Что такое HTML</h2>
+
+      <p>
+        <strong>HTML</strong> (HyperText Markup Language) - язык гипертекстовой
+        разметки. Это <em>не язык программирования</em>, а язык разметки: мы
+        помечаем текст тегами, чтобы браузер знал, что где находится.
+      </p>
+
+      <p>
+        HTML-файл - это обычный текстовый файл с расширением <code>.html</code>.
+        Браузер его читает и превращает в страницу.
+      </p>
+
+      <p>В веб-разработке есть три технологии:</p>
+      <ul>
+        <li><strong>HTML</strong> - скелет, структура</li>
+        <li><strong>CSS</strong> - внешний вид, оформление</li>
+        <li><strong>JavaScript</strong> - поведение, интерактивность</li>
+      </ul>
+
+      <!-- ==================== 2. СТРУКТУРА ==================== -->
+      <h2 id="structure">2. Структура документа</h2>
+
+      <p>Каждый HTML-документ состоит из обязательных частей:</p>
+
+      <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Заголовок страницы&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    Содержимое страницы
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+      <h3>Разбор каждой части</h3>
+
+      <table>
+        <tr>
+          <th>Часть</th>
+          <th>Что значит</th>
+        </tr>
+        <tr>
+          <td><code>&lt;!DOCTYPE html&gt;</code></td>
+          <td>Декларация: «это современный HTML». Пишется первой строкой</td>
+        </tr>
+        <tr>
+          <td><code>&lt;html&gt;</code></td>
+          <td>
+            Корневой элемент. Всё содержимое внутри. Сюда вешают атрибут
+            <code>lang</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>&lt;head&gt;</code></td>
+          <td>Служебная часть. Пользователь её не видит</td>
+        </tr>
+        <tr>
+          <td><code>&lt;body&gt;</code></td>
+          <td>Всё, что видно на странице</td>
+        </tr>
+      </table>
+
+      <div class="note">
+        <strong>Важно:</strong> тег <code>&lt;html&gt;</code> нужен не только
+        как «коробка». На него вешают атрибуты - самый частый <code>lang</code>.
+        Без него некуда будет указать язык страницы.
+      </div>
+
+      <!-- ==================== 3. МЕТАДАННЫЕ ==================== -->
+      <h2 id="metadata">3. Метаданные</h2>
+
+      <p>
+        Внутри <code>&lt;head&gt;</code> лежат метаданные - служебная информация
+        для браузера и поисковиков. Пользователь её не видит, кроме
+        <code>&lt;title&gt;</code>.
+      </p>
+
+      <h3>charset - кодировка</h3>
+
+      <pre><code>&lt;meta charset="UTF-8"&gt;</code></pre>
+
+      <p>
+        Указывает кодировку файла. Всегда пишем <code>UTF-8</code> - это
+        современная кодировка, в которой есть все буквы мира.
+      </p>
+
+      <div class="warning">
+        <strong>Правило:</strong> кодировка файла и
+        <code>&lt;meta charset&gt;</code>
+        должны совпадать. Если сказать браузеру «я UTF-8», а файл сохранить в
+        ANSI - получишь кракозябры.
+      </div>
+
+      <h3>viewport - для мобильных</h3>
+
+      <pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></pre>
+
+      <p>
+        Говорит браузеру: «считай ширину экрана реальной шириной устройства».
+        Без этого на телефоне страница будет уменьшенной копией десктопной.
+      </p>
+
+      <h3>description - описание</h3>
+
+      <pre><code>&lt;meta name="description" content="Личная страница Ивана"&gt;</code></pre>
+
+      <p>
+        Описание страницы. Пользователь его не видит на странице, но видит в
+        поисковой выдаче - серым текстом под заголовком.
+      </p>
+
+      <div class="note">
+        <strong>Нюанс:</strong> description - это <em>рекомендация</em>, а не
+        приказ. Google может проигнорировать ваш текст и собрать описание сам из
+        содержимого страницы.
+      </div>
+
+      <h3>title - заголовок вкладки</h3>
+
+      <pre><code>&lt;title&gt;Моя первая страница&lt;/title&gt;</code></pre>
+
+      <p>
+        Единственный элемент из <code>&lt;head&gt;</code>, который видит
+        пользователь - на вкладке браузера. Также используется поисковиками.
+      </p>
+
+      <!-- ==================== 4. ТЕКСТ ==================== -->
+      <h2 id="text">4. Текст</h2>
+
+      <h3>Заголовки</h3>
+
+      <p>
+        Шесть уровней: от <code>&lt;h1&gt;</code> до <code>&lt;h6&gt;</code>.
+      </p>
+
+      <pre><code>&lt;h1&gt;Главный заголовок&lt;/h1&gt;
+&lt;h2&gt;Раздел&lt;/h2&gt;
+&lt;h3&gt;Подраздел&lt;/h3&gt;</code></pre>
+
+      <div class="warning">
+        <strong>Правила:</strong>
+        <ul>
+          <li>
+            На странице только <strong>один</strong> <code>&lt;h1&gt;</code>
+          </li>
+          <li>
+            Нельзя перескакивать уровни: после <code>h1</code> идёт
+            <code>h2</code>, не <code>h4</code>
+          </li>
+        </ul>
+      </div>
+
+      <h3>Абзацы и переносы</h3>
+
+      <pre><code>&lt;p&gt;Это абзац текста.&lt;/p&gt;
+
+&lt;p&gt;Первая строка&lt;br&gt;Вторая строка&lt;/p&gt;</code></pre>
+
+      <p>
+        <code>&lt;p&gt;</code> - абзац, <code>&lt;br&gt;</code> - перенос строки
+        внутри абзаца. Перенос строки в коде браузер игнорирует.
+      </p>
+
+      <!-- ==================== 5. ФОРМАТИРОВАНИЕ ==================== -->
+      <h2 id="formatting">5. Форматирование текста</h2>
+
+      <p>
+        Теги делятся на <strong>семантические</strong> (описывают смысл) и
+        <strong>визуальные</strong> (описывают вид).
+      </p>
+
+      <h3>Семантические теги</h3>
+
+      <pre><code>&lt;strong&gt;Важный текст&lt;/strong&gt;
+&lt;em&gt;Акцент, интонация&lt;/em&gt;
+&lt;mark&gt;Выделенное, искомое&lt;/mark&gt;
+&lt;small&gt;Второстепенная информация&lt;/small&gt;
+&lt;del&gt;Удалённый текст&lt;/del&gt;
+&lt;ins&gt;Добавленный текст&lt;/ins&gt;
+&lt;sub&gt;Нижний индекс&lt;/sub&gt;
+&lt;sup&gt;Верхний индекс&lt;/sup&gt;</code></pre>
+
+      <h3>Визуальные теги</h3>
+
+      <pre><code>&lt;b&gt;Жирный&lt;/b&gt;
+&lt;i&gt;Курсив&lt;/i&gt;</code></pre>
+
+      <h3>pre - текст как в коде</h3>
+
+      <pre><code>&lt;pre&gt;
+Строка 1
+    Строка 2 с отступом
+&lt;/pre&gt;</code></pre>
+
+      <p>Сохраняет переносы строк и пробелы ровно так, как написано в коде.</p>
+
+      <h3>Комментарии</h3>
+
+      <pre><code>&lt;!-- Это комментарий --&gt;</code></pre>
+
+      <p>
+        Не виден на странице, но виден в исходном коде. Используется для
+        пометок, объяснений и временного отключения кода.
+      </p>
+
+      <!-- ==================== 6. СПИСКИ ==================== -->
+      <h2 id="lists">6. Списки</h2>
+
+      <h3>Маркированный список</h3>
+
+      <pre><code>&lt;ul&gt;
+    &lt;li&gt;Хлеб&lt;/li&gt;
+    &lt;li&gt;Молоко&lt;/li&gt;
+    &lt;li&gt;Яйца&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+      <p>Порядок не важен. Каждый пункт с маркером.</p>
+
+      <h3>Нумерованный список</h3>
+
+      <pre><code>&lt;ol&gt;
+    &lt;li&gt;Разбейте яйца&lt;/li&gt;
+    &lt;li&gt;Взбейте с молоком&lt;/li&gt;
+    &lt;li&gt;Добавьте муку&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+
+      <p>Порядок важен. Каждый пункт с числом.</p>
+
+      <h3>Вложенные списки</h3>
+
+      <pre><code>&lt;ul&gt;
+    &lt;li&gt;Фрукты
+        &lt;ul&gt;
+            &lt;li&gt;Яблоки&lt;/li&gt;
+            &lt;li&gt;Бананы&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+      <p>Вложенный список кладётся <em>внутрь</em> <code>&lt;li&gt;</code>.</p>
+
+      <h3>Список описаний</h3>
+
+      <pre><code>&lt;dl&gt;
+    &lt;dt&gt;HTML&lt;/dt&gt;
+    &lt;dd&gt;Язык разметки гипертекста&lt;/dd&gt;
+    
+    &lt;dt&gt;CSS&lt;/dt&gt;
+    &lt;dd&gt;Язык описания внешнего вида&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+
+      <p>
+        Пары «термин - определение»: <code>&lt;dt&gt;</code> - термин,
+        <code>&lt;dd&gt;</code> - определение.
+      </p>
+
+      <h3>Когда какой использовать</h3>
+
+      <table>
+        <tr>
+          <th>Список</th>
+          <th>Когда использовать</th>
+        </tr>
+        <tr>
+          <td><code>&lt;ul&gt;</code></td>
+          <td>Порядок не важен: список покупок, навыков</td>
+        </tr>
+        <tr>
+          <td><code>&lt;ol&gt;</code></td>
+          <td>Порядок важен: инструкция, рецепт, шаги</td>
+        </tr>
+        <tr>
+          <td><code>&lt;dl&gt;</code></td>
+          <td>Пары «термин - определение»: словарь, глоссарий</td>
+        </tr>
+      </table>
+
+      <!-- ==================== 7. ССЫЛКИ ==================== -->
+      <h2 id="links">7. Ссылки</h2>
+
+      <p>
+        Слово «гипертекст» в названии HTML - это про ссылки. Гипертекст - это
+        текст, по которому можно переходить. Ссылки - то, что делает интернет
+        интернетом. Без них была бы просто куча отдельных страниц.
+      </p>
+
+      <h3>Тег a и атрибут href</h3>
+
+      <pre><code>&lt;a href="https://yandex.ru"&gt;Перейти на Яндекс&lt;/a&gt;</code></pre>
+
+      <p>
+        Ссылка делается тегом <code>&lt;a&gt;</code> - <strong>anchor</strong>,
+        «якорь». Адрес, куда ведёт ссылка, указывается в атрибуте
+        <code>href</code> - <strong>hypertext reference</strong>.
+      </p>
+
+      <p>
+        <code>&lt;a&gt;</code> - парный тег. Текст между
+        <code>&lt;a&gt;</code> и <code>&lt;/a&gt;</code> - то, что видит
+        пользователь. Атрибут <code>href</code> - куда ведёт ссылка.
+      </p>
+
+      <h3>Абсолютные ссылки</h3>
+
+      <p>Полный адрес с протоколом:</p>
+
+      <pre><code>&lt;a href="https://www.google.com"&gt;Google&lt;/a&gt;
+&lt;a href="https://github.com"&gt;GitHub&lt;/a&gt;</code></pre>
+
+      <p>
+        Обязательно с <code>https://</code> (или <code>http://</code>). Без
+        протокола браузер подумает, что это относительная ссылка.
+      </p>
+
+      <h3>Относительные ссылки</h3>
+
+      <p>
+        Адрес <strong>относительно текущего файла</strong>. Используется для
+        ссылок между страницами своего сайта.
+      </p>
+
+      <p>Представьте такую структуру:</p>
+
+      <pre><code>lesson-3/
+├── index.html
+├── about.html
+└── contacts.html</code></pre>
+
+      <p>Тогда ссылки между ними:</p>
+
+      <pre><code>&lt;!-- В файле index.html --&gt;
+&lt;a href="about.html"&gt;Обо мне&lt;/a&gt;
+&lt;a href="contacts.html"&gt;Контакты&lt;/a&gt;</code></pre>
+
+      <p>
+        Заметьте: не <code>https://...</code>, а просто <code>about.html</code>.
+        Браузер сам поймёт, что файл лежит рядом с текущим.
+      </p>
+
+      <h4>Если файл в другой папке</h4>
+
+      <pre><code>&lt;!-- Файл в подпапке pages --&gt;
+&lt;a href="pages/about.html"&gt;Обо мне&lt;/a&gt;
+
+&lt;!-- Файл на уровень выше --&gt;
+&lt;a href="../index.html"&gt;На главную&lt;/a&gt;</code></pre>
+
+      <p><code>../</code> означает «выйти на уровень выше».</p>
+
+      <h3>Абсолютные vs относительные: какую выбирать</h3>
+
+      <table>
+        <tr>
+          <th>Ситуация</th>
+          <th>Какую ссылку использовать</th>
+        </tr>
+        <tr>
+          <td>Ссылка на внешний сайт</td>
+          <td>Абсолютная: <code>https://yandex.ru</code></td>
+        </tr>
+        <tr>
+          <td>Ссылка внутри своего сайта</td>
+          <td>Относительная: <code>about.html</code></td>
+        </tr>
+      </table>
+
+      <div class="note">
+        <strong>Почему не всегда абсолютные?</strong> Если сайт переедет на
+        другой домен, все абсолютные ссылки придётся менять вручную. А
+        относительные продолжат работать.
+      </div>
+
+      <h3>Якорные ссылки</h3>
+
+      <p>
+        Якорь - ссылка <strong>внутри одной страницы</strong>. Используется для
+        оглавлений и навигации по длинному тексту.
+      </p>
+
+      <p>
+        Сначала ставим <code>id</code> на элемент, к которому хотим перейти:
+      </p>
+
+      <pre><code>&lt;h2 id="about"&gt;Обо мне&lt;/h2&gt;
+&lt;h2 id="contacts"&gt;Контакты&lt;/h2&gt;</code></pre>
+
+      <p>
+        Потом делаем ссылку на этот <code>id</code> - со знаком <code>#</code>:
+      </p>
+
+      <pre><code>&lt;a href="#about"&gt;Перейти к разделу «Обо мне»&lt;/a&gt;
+&lt;a href="#contacts"&gt;Перейти к контактам&lt;/a&gt;</code></pre>
+
+      <p>
+        При клике браузер прокрутит страницу к нужному разделу. Если страница
+        длинная - без таких ссылок не обойтись.
+      </p>
+
+      <div class="note">
+        <strong>Правило:</strong> <code>id</code> должен быть уникальным на
+        странице. Два элемента с одинаковым <code>id</code> - ошибка.
+      </div>
+
+      <h4>Якорь на другую страницу</h4>
+
+      <p>Можно ссылаться не просто на страницу, а сразу на раздел в ней:</p>
+
+      <pre><code>&lt;a href="about.html#biography"&gt;Биография&lt;/a&gt;</code></pre>
+
+      <h3>Ссылка на почту и телефон</h3>
+
+      <pre><code>&lt;a href="mailto:ivan@example.com"&gt;Написать мне&lt;/a&gt;
+&lt;a href="tel:+79000000000"&gt;Позвонить&lt;/a&gt;</code></pre>
+
+      <p>
+        При клике на первую откроется почтовый клиент с адресом. При клике на
+        вторую - телефон позвонит по номеру (на смартфоне).
+      </p>
+
+      <h3>Атрибут target - открыть в новой вкладке</h3>
+
+      <pre><code>&lt;a href="https://yandex.ru" target="_blank"&gt;Яндекс в новой вкладке&lt;/a&gt;</code></pre>
+
+      <p>
+        <code>_blank</code> - «новая вкладка». По умолчанию ссылка открывается в
+        текущей вкладке.
+      </p>
+
+      <div class="warning">
+        <strong>Правило:</strong> используйте
+        <code>target="_blank"</code> только для <strong>внешних</strong> ссылок.
+        Внутри своего сайта - нет. Пользователь сам решит, открыть в новой
+        вкладке или нет.
+      </div>
+
+      <h3>Ссылка-картинка</h3>
+
+      <p>Ссылкой может быть не только текст, но и картинка:</p>
+
+      <pre><code>&lt;a href="https://github.com/username"&gt;
+    &lt;img src="images/github.png" alt="Мой GitHub" width="50"&gt;
+&lt;/a&gt;</code></pre>
+
+      <p>
+        Клик по картинке приведёт на указанный адрес. Часто используется для
+        иконок соцсетей.
+      </p>
+
+      <h3>Итоговая таблица</h3>
+
+      <table>
+        <tr>
+          <th>Что</th>
+          <th>Пример</th>
+        </tr>
+        <tr>
+          <td>Абсолютная ссылка</td>
+          <td><code>href="https://yandex.ru"</code></td>
+        </tr>
+        <tr>
+          <td>Относительная ссылка</td>
+          <td><code>href="about.html"</code></td>
+        </tr>
+        <tr>
+          <td>Ссылка на уровень выше</td>
+          <td><code>href="../index.html"</code></td>
+        </tr>
+        <tr>
+          <td>Якорь на этой странице</td>
+          <td><code>href="#about"</code></td>
+        </tr>
+        <tr>
+          <td>Якорь на другой странице</td>
+          <td><code>href="about.html#bio"</code></td>
+        </tr>
+        <tr>
+          <td>Ссылка на почту</td>
+          <td><code>href="mailto:ivan@mail.ru"</code></td>
+        </tr>
+        <tr>
+          <td>Ссылка на телефон</td>
+          <td><code>href="tel:+79000000000"</code></td>
+        </tr>
+        <tr>
+          <td>Открыть в новой вкладке</td>
+          <td><code>target="_blank"</code></td>
+        </tr>
+      </table>
+
+      <!-- ==================== 8. ИЗОБРАЖЕНИЯ ==================== -->
+      <h2 id="images">8. Изображения</h2>
+
+      <h3>Тег img</h3>
+
+      <pre><code>&lt;img src="images/photo.jpg" alt="Описание картинки" width="300"&gt;</code></pre>
+
+      <p><code>&lt;img&gt;</code> - одиночный тег. Обязательные атрибуты:</p>
+
+      <table>
+        <tr>
+          <th>Атрибут</th>
+          <th>Что значит</th>
+        </tr>
+        <tr>
+          <td><code>src</code></td>
+          <td>Путь к картинке (относительный или абсолютный)</td>
+        </tr>
+        <tr>
+          <td><code>alt</code></td>
+          <td>
+            Описание. Показывается, если картинка не загрузилась. Читают
+            скринридеры
+          </td>
+        </tr>
+        <tr>
+          <td><code>width</code></td>
+          <td>Ширина в пикселях</td>
+        </tr>
+        <tr>
+          <td><code>height</code></td>
+          <td>Высота в пикселях</td>
+        </tr>
+      </table>
+
+      <h3>figure и figcaption - подпись к картинке</h3>
+
+      <pre><code>&lt;figure&gt;
+    &lt;img src="images/poster.jpg" alt="Постер фильма" width="300"&gt;
+    &lt;figcaption&gt;Постер фильма, 2014 год&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+
+      <p>
+        <code>&lt;figure&gt;</code> - контейнер для картинки,
+        <code>&lt;figcaption&gt;</code> - подпись. Это семантический способ:
+        браузер, поисковик и скринридер понимают, что подпись относится именно к
+        картинке.
+      </p>
+
+      <!-- ==================== 9. УСТАРЕВШИЕ ТЕГИ ==================== -->
+      <h2 id="legacy">9. Устаревшие теги</h2>
+
+      <div class="legacy">
+        <p>
+          <strong>Это история.</strong> Эти теги и атрибуты не используются в
+          современной разработке. Они существовали, когда ещё не было CSS, и
+          оформление вешали прямо в HTML. Знать их нужно, чтобы понимать старый
+          код и осознавать, зачем появился CSS.
+        </p>
+      </div>
+
+      <table>
+        <tr>
+          <th>Устаревшее</th>
+          <th>Что делало</th>
+          <th>Современная замена</th>
+        </tr>
+        <tr>
+          <td><code>&lt;font&gt;</code></td>
+          <td>Шрифт, цвет, размер</td>
+          <td>CSS: font, color</td>
+        </tr>
+        <tr>
+          <td><code>align</code></td>
+          <td>Выравнивание</td>
+          <td>CSS: text-align</td>
+        </tr>
+        <tr>
+          <td><code>bgcolor</code></td>
+          <td>Цвет фона</td>
+          <td>CSS: background-color</td>
+        </tr>
+        <tr>
+          <td><code>background</code></td>
+          <td>Фоновая картинка</td>
+          <td>CSS: background-image</td>
+        </tr>
+        <tr>
+          <td><code>border</code></td>
+          <td>Рамка</td>
+          <td>CSS: border</td>
+        </tr>
+        <tr>
+          <td><code>width</code> / <code>height</code></td>
+          <td>Размеры</td>
+          <td>CSS (кроме <code>&lt;img&gt;</code>)</td>
+        </tr>
+      </table>
+
+      <p>
+        Все эти теги и атрибуты убрали, потому что они смешивали
+        <strong>разметку</strong> и <strong>оформление</strong>. А оформление -
+        это задача CSS.
+      </p>
+    </div>
+  </body>
+</html>
