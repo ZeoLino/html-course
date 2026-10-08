@@ -242,7 +242,8 @@
           <li><a href="#lists">Списки</a></li>
           <li><a href="#links">Ссылки</a></li>
           <li><a href="#images">Изображения</a></li>
-          <li><a href="#legacy">Устаревшие теги</a></li>
+          <li><a href="#legacy">Устаревшие теги и атрибуты</a></li>
+          <li><a href="#tables">Таблицы</a></li>
         </ol>
       </div>
 
@@ -787,8 +788,8 @@
         картинке.
       </p>
 
-      <!-- ==================== 9. УСТАРЕВШИЕ ТЕГИ ==================== -->
-      <h2 id="legacy">9. Устаревшие теги</h2>
+      <!-- ==================== 9. УСТАРЕВШИЕ ТЕГИ И АТРИБУТЫ ==================== -->
+      <h2 id="legacy">9. Устаревшие теги и атрибуты</h2>
 
       <div class="legacy">
         <p>
@@ -842,6 +843,255 @@
         <strong>разметку</strong> и <strong>оформление</strong>. А оформление -
         это задача CSS.
       </p>
+      <!-- ==================== 10. ТАБЛИЦЫ ==================== -->
+      <h2 id="tables">10. Таблицы</h2>
+
+      <p>
+        <strong>Таблицы</strong> используются для отображения табличных данных:
+        расписаний, прайсов, сравнений, статистики. У этих данных есть строки и
+        столбцы, и таблица - естественный способ их показать.
+      </p>
+
+      <div class="warning">
+        <strong>Важно:</strong> таблицы - <strong>только для данных</strong>, не
+        для макета. Раньше, когда не было CSS, разработчики строили всю вёрстку
+        сайта на таблицах. Сейчас так никто не делает: для макета есть CSS. Если
+        у данных нет логики «строки и столбцы» - таблица не нужна.
+      </div>
+
+      <h3>Базовая структура</h3>
+
+      <p>Таблица состоит из трёх базовых тегов:</p>
+
+      <ul>
+        <li><code>&lt;table&gt;</code> - контейнер всей таблицы</li>
+        <li><code>&lt;tr&gt;</code> - строка таблицы (<em>table row</em>)</li>
+        <li>
+          <code>&lt;td&gt;</code> - ячейка с данными (<em>table data</em>)
+        </li>
+      </ul>
+
+      <pre><code>&lt;table border="1"&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Ячейка 1&lt;/td&gt;
+        &lt;td&gt;Ячейка 2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Ячейка 3&lt;/td&gt;
+        &lt;td&gt;Ячейка 4&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+
+      <h3>Заголовочные ячейки: th</h3>
+
+      <p>
+        Для шапки таблицы есть отдельный тег - <code>&lt;th&gt;</code> (<em
+          >table header</em
+        >). Он делает текст жирным и выравнивает по центру, но главное - говорит
+        браузеру, скринридеру и поисковику, что это заголовок столбца.
+      </p>
+
+      <pre><code>&lt;table border="1"&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Имя&lt;/th&gt;
+        &lt;th&gt;Возраст&lt;/th&gt;
+        &lt;th&gt;Город&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Иван&lt;/td&gt;
+        &lt;td&gt;25&lt;/td&gt;
+        &lt;td&gt;Москва&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Мария&lt;/td&gt;
+        &lt;td&gt;30&lt;/td&gt;
+        &lt;td&gt;Санкт-Петербург&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+
+      <h3>Объединение ячеек: colspan и rowspan</h3>
+
+      <p>
+        Иногда нужно, чтобы ячейка занимала несколько столбцов или строк. Для
+        этого есть два атрибута:
+      </p>
+
+      <ul>
+        <li>
+          <code>colspan</code> (<em>column span</em>) - объединение
+          <strong>по горизонтали</strong>
+        </li>
+        <li>
+          <code>rowspan</code> (<em>row span</em>) - объединение
+          <strong>по вертикали</strong>
+        </li>
+      </ul>
+
+      <h4>colspan - по горизонтали</h4>
+
+      <pre><code>&lt;table border="1"&gt;
+    &lt;tr&gt;
+        &lt;th colspan="3"&gt;Список студентов&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Имя&lt;/th&gt;
+        &lt;th&gt;Возраст&lt;/th&gt;
+        &lt;th&gt;Город&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Иван&lt;/td&gt;
+        &lt;td&gt;25&lt;/td&gt;
+        &lt;td&gt;Москва&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+
+      <p><code>colspan="3"</code> - ячейка займёт три столбца вместо одного.</p>
+
+      <h4>rowspan - по вертикали</h4>
+
+      <pre><code>&lt;table border="1"&gt;
+    &lt;tr&gt;
+        &lt;th&gt;День&lt;/th&gt;
+        &lt;th&gt;Занятие&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td rowspan="2"&gt;Понедельник&lt;/td&gt;
+        &lt;td&gt;HTML&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;CSS&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+
+      <p>
+        <code>rowspan="2"</code> - ячейка займёт две строки. Обратите внимание:
+        во второй строке остаётся только <strong>одна</strong> ячейка, потому
+        что первая уже занята «Понедельником» сверху.
+      </p>
+
+      <div class="note">
+        <strong>Правило:</strong> если ячейка занимает несколько строк или
+        столбцов - в следующих строках/столбцах её <strong>не пишем</strong>.
+        Место уже занято.
+      </div>
+
+      <h3>Семантические части: thead, tbody, tfoot</h3>
+
+      <p>Таблицу можно разбить на три логические части:</p>
+
+      <ul>
+        <li><code>&lt;thead&gt;</code> - шапка (заголовки столбцов)</li>
+        <li><code>&lt;tbody&gt;</code> - тело (основные данные)</li>
+        <li><code>&lt;tfoot&gt;</code> - подвал (итоги, примечания)</li>
+      </ul>
+
+      <pre><code>&lt;table border="1"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Товар&lt;/th&gt;
+            &lt;th&gt;Цена&lt;/th&gt;
+            &lt;th&gt;Количество&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Хлеб&lt;/td&gt;
+            &lt;td&gt;50 ₽&lt;/td&gt;
+            &lt;td&gt;2&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Молоко&lt;/td&gt;
+            &lt;td&gt;80 ₽&lt;/td&gt;
+            &lt;td&gt;1&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+    &lt;tfoot&gt;
+        &lt;tr&gt;
+            &lt;td colspan="2"&gt;Итого:&lt;/td&gt;
+            &lt;td&gt;180 ₽&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tfoot&gt;
+&lt;/table&gt;</code></pre>
+
+      <p>Зачем это нужно:</p>
+
+      <ul>
+        <li>
+          <strong>Скринридеры</strong> понимают, где шапка, где данные, где
+          итоги - незрячий пользователь может «перейти к итогам» или «прочитать
+          шапку»
+        </li>
+        <li><strong>Поисковики</strong> лучше понимают структуру таблицы</li>
+        <li>
+          <strong>CSS</strong> (когда вы его изучите) позволяет стилизовать
+          части отдельно - например, закрепить шапку при прокрутке
+        </li>
+      </ul>
+
+      <h3>Изображение внутри ячейки</h3>
+
+      <p>
+        В ячейку можно поместить не только текст, но и картинку через
+        <code>&lt;img&gt;</code>. Используется для каталогов, меню, галерей:
+      </p>
+
+      <pre><code>&lt;table border="1"&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Фото&lt;/th&gt;
+        &lt;th&gt;Товар&lt;/th&gt;
+        &lt;th&gt;Цена&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;&lt;img src="bread.jpg" alt="Хлеб" width="100"&gt;&lt;/td&gt;
+        &lt;td&gt;Хлеб&lt;/td&gt;
+        &lt;td&gt;50 ₽&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+
+      <p>Ячейка растягивается под размер картинки - как обычный контейнер.</p>
+
+      <h3>Устаревшие атрибуты для таблиц</h3>
+
+      <div class="legacy">
+        <p>
+          <strong>Это история.</strong> Раньше размеры и отступы таблицы
+          задавали прямо в HTML. Сейчас это делается через CSS, но на занятиях
+          может пригодиться.
+        </p>
+      </div>
+
+      <table>
+        <tr>
+          <th>Атрибут</th>
+          <th>Что делал</th>
+          <th>Современная замена</th>
+        </tr>
+        <tr>
+          <td><code>border</code></td>
+          <td>Рамка вокруг ячеек</td>
+          <td>CSS: border</td>
+        </tr>
+        <tr>
+          <td><code>width</code> / <code>height</code></td>
+          <td>Размер таблицы</td>
+          <td>CSS: width, height</td>
+        </tr>
+        <tr>
+          <td><code>cellpadding</code></td>
+          <td>Отступ <em>внутри</em> ячейки</td>
+          <td>CSS: padding</td>
+        </tr>
+        <tr>
+          <td><code>cellspacing</code></td>
+          <td>Отступ <em>между</em> ячейками</td>
+          <td>CSS: border-spacing</td>
+        </tr>
+        <tr>
+          <td><code>bgcolor</code></td>
+          <td>Цвет ячейки</td>
+          <td>CSS: background-color</td>
+        </tr>
+      </table>
     </div>
   </body>
 </html>
