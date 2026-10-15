@@ -231,8 +231,8 @@
       <h1>HTML: учебник</h1>
 
       <!-- ==================== ОГЛАВЛЕНИЕ ==================== -->
-      <div class="toc">
-        <h3>Содержание</h3>
+      <details class="toc">
+        <summary>Содержание</summary>
         <ol>
           <li><a href="#intro">Что такое HTML</a></li>
           <li><a href="#structure">Структура документа</a></li>
@@ -244,8 +244,9 @@
           <li><a href="#images">Изображения</a></li>
           <li><a href="#legacy">Устаревшие теги и атрибуты</a></li>
           <li><a href="#tables">Таблицы</a></li>
+          <li><a href="#forms">Формы</a></li>
         </ol>
-      </div>
+      </details>
 
       <!-- ==================== 1. ЧТО ТАКОЕ HTML ==================== -->
       <h2 id="intro">1. Что такое HTML</h2>
@@ -1090,6 +1091,381 @@
           <td><code>bgcolor</code></td>
           <td>Цвет ячейки</td>
           <td>CSS: background-color</td>
+        </tr>
+      </table>
+      <!-- ==================== 11. ФОРМЫ ==================== -->
+      <h2 id="forms">11. Формы</h2>
+
+      <p>
+        <strong>Формы</strong> - это способ, которым сайт общается с
+        пользователем. Регистрация, вход, поиск, отзывы, оформление заказа - всё
+        это формы. Пользователь заполняет поля, нажимает кнопку - данные уходят
+        на сервер.
+      </p>
+
+      <h3>Контейнер формы</h3>
+
+      <pre><code>&lt;form action="/submit" method="POST"&gt;
+    &lt;!-- поля формы --&gt;
+&lt;/form&gt;</code></pre>
+
+      <p>Два главных атрибута:</p>
+
+      <ul>
+        <li>
+          <code>action</code> - <strong>куда</strong> отправить данные (адрес
+          сервера или скрипта)
+        </li>
+        <li>
+          <code>method</code> - <strong>как</strong> отправить:
+          <code>GET</code> или
+          <code>POST</code>
+        </li>
+      </ul>
+
+      <h3>Зачем нужен form</h3>
+
+      <p>Три причины оборачивать поля в <code>&lt;form&gt;</code>:</p>
+
+      <ul>
+        <li>
+          <strong>Кнопка submit работает только внутри формы.</strong>
+          Без формы она превращается в обычную кнопку-пустышку
+        </li>
+        <li>
+          <strong>Форма собирает данные в один набор.</strong>
+          Все поля внутри одной формы отправляются вместе
+        </li>
+        <li>
+          <strong>Форма знает, куда и как отправлять</strong> - через
+          <code>action</code> и <code>method</code>
+        </li>
+      </ul>
+
+      <div class="note">
+        <strong>Важно:</strong> обычное поле <code>&lt;input&gt;</code> без
+        формы работает - пользователь может в него писать. Просто данные никуда
+        не уходят. Как только нужна отправка - нужна <code>&lt;form&gt;</code>.
+      </div>
+
+      <h3>GET и POST: в чём разница</h3>
+
+      <p><strong>GET</strong> - данные отправляются в адресной строке:</p>
+
+      <pre><code>https://example.com/search?query=html&amp;lang=ru</code></pre>
+
+      <p>Всё, что после <code>?</code> - это данные формы. Их видно всем.</p>
+
+      <p>
+        <strong>POST</strong> - данные отправляются в теле запроса, в адресе их
+        не видно.
+      </p>
+
+      <table>
+        <tr>
+          <th>Метод</th>
+          <th>Когда использовать</th>
+          <th>Пример</th>
+        </tr>
+        <tr>
+          <td><code>GET</code></td>
+          <td>Поиск, фильтры. Данные не секретные</td>
+          <td>Поиск в браузере</td>
+        </tr>
+        <tr>
+          <td><code>POST</code></td>
+          <td>Логин, регистрация, оплата. Данные секретные</td>
+          <td>Вход в соцсети</td>
+        </tr>
+      </table>
+
+      <div class="note">
+        <strong>Правило:</strong> если данные можно показать в адресной строке -
+        GET. Если это пароли, личная информация, деньги - POST.
+      </div>
+
+      <h3>Поля ввода: input</h3>
+
+      <p>
+        Основной тег для полей - <code>&lt;input&gt;</code>. Это одиночный тег.
+        Главный атрибут - <code>type</code>, он определяет вид поля.
+      </p>
+
+      <pre><code>&lt;input type="text" name="username"&gt;</code></pre>
+
+      <h3>Атрибут name: зачем он нужен</h3>
+
+      <p>
+        Когда пользователь нажимает «Отправить», браузер собирает данные формы и
+        отправляет их на сервер в виде пар <strong>«имя=значение»</strong>:
+      </p>
+
+      <pre><code>username=Иван&amp;email=ivan@mail.ru&amp;city=msk</code></pre>
+
+      <p>
+        Здесь <code>username</code>, <code>email</code>, <code>city</code> - это
+        то, что написано в атрибуте <code>name</code>. А <code>Иван</code>,
+        <code>ivan@mail.ru</code>, <code>msk</code> - то, что ввёл пользователь.
+      </p>
+
+      <div class="warning">
+        <strong>Правило:</strong> нет <code>name</code> - нет данных. Поле
+        останется на странице, пользователь его заполнит, но на сервер оно не
+        уйдёт.
+      </div>
+
+      <h4>name и value - разные вещи</h4>
+
+      <ul>
+        <li>
+          <code>name</code> - <strong>имя</strong> поля. Задаёт разработчик.
+          Одинаковое для всех полей этого типа
+        </li>
+        <li>
+          <code>value</code> - <strong>значение</strong>. У текстовых полей его
+          вводит пользователь. У чекбоксов, радиокнопок и
+          <code>&lt;option&gt;</code> - задаёт разработчик
+        </li>
+      </ul>
+
+      <pre><code>&lt;input type="radio" name="gender" value="male"&gt; Мужской</code></pre>
+
+      <p>
+        Пользователь видит «Мужской». На сервер уходит <code>male</code> -
+        потому что так написано в <code>value</code>. А имя поля -
+        <code>gender</code>, чтобы сервер понял: это ответ на вопрос про пол.
+      </p>
+
+      <h4>Типы полей</h4>
+
+      <table>
+        <tr>
+          <th>Тип</th>
+          <th>Что это</th>
+          <th>Пример использования</th>
+        </tr>
+        <tr>
+          <td><code>text</code></td>
+          <td>Обычный текст</td>
+          <td>Имя, логин</td>
+        </tr>
+        <tr>
+          <td><code>password</code></td>
+          <td>Пароль (символы скрыты)</td>
+          <td>Пароль</td>
+        </tr>
+        <tr>
+          <td><code>email</code></td>
+          <td>Email с проверкой на @</td>
+          <td>Почта</td>
+        </tr>
+        <tr>
+          <td><code>number</code></td>
+          <td>Число (можно min и max)</td>
+          <td>Возраст</td>
+        </tr>
+        <tr>
+          <td><code>date</code></td>
+          <td>Дата с календариком</td>
+          <td>День рождения</td>
+        </tr>
+        <tr>
+          <td><code>checkbox</code></td>
+          <td>Галочка (можно выбрать несколько)</td>
+          <td>Увлечения</td>
+        </tr>
+        <tr>
+          <td><code>radio</code></td>
+          <td>Кружок (только один из группы)</td>
+          <td>Пол</td>
+        </tr>
+        <tr>
+          <td><code>file</code></td>
+          <td>Загрузка файла</td>
+          <td>Аватар</td>
+        </tr>
+        <tr>
+          <td><code>tel</code></td>
+          <td>Телефон (без проверки формата)</td>
+          <td>Номер телефона</td>
+        </tr>
+        <tr>
+          <td><code>url</code></td>
+          <td>Адрес сайта с проверкой протокола</td>
+          <td>Ссылка на сайт</td>
+        </tr>
+        <tr>
+          <td><code>time</code></td>
+          <td>Время (часы и минуты)</td>
+          <td>Время встречи</td>
+        </tr>
+        <tr>
+          <td><code>color</code></td>
+          <td>Выбор цвета из палитры</td>
+          <td>Любимый цвет</td>
+        </tr>
+        <tr>
+          <td><code>range</code></td>
+          <td>Ползунок для выбора из диапазона</td>
+          <td>Оценка, громкость</td>
+        </tr>
+        <tr>
+          <td><code>search</code></td>
+          <td>Поле поиска</td>
+          <td>Поиск по сайту</td>
+        </tr>
+      </table>
+
+      <h4>Чекбоксы и радиокнопки</h4>
+
+      <p><strong>Checkbox</strong> - можно выбрать несколько:</p>
+
+      <pre><code>&lt;input type="checkbox" name="hobby" value="sport"&gt; Спорт
+&lt;input type="checkbox" name="hobby" value="music"&gt; Музыка</code></pre>
+
+      <p>
+        <strong>Radio</strong> - только один из группы. У всех радиокнопок
+        группы <strong>одинаковый</strong> <code>name</code>:
+      </p>
+
+      <pre><code>&lt;input type="radio" name="gender" value="male"&gt; Мужской
+&lt;input type="radio" name="gender" value="female"&gt; Женский</code></pre>
+
+      <p>
+        Атрибут <code>value</code> - значение, которое уйдёт на сервер.
+        Пользователь видит «Спорт», на сервер уходит <code>sport</code>.
+      </p>
+
+      <h3>Выпадающий список: select</h3>
+
+      <pre><code>&lt;select name="city"&gt;
+    &lt;option value=""&gt;-- Выберите город --&lt;/option&gt;
+    &lt;option value="msk"&gt;Москва&lt;/option&gt;
+    &lt;option value="spb"&gt;Санкт-Петербург&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+
+      <p>
+        <code>&lt;select&gt;</code> - контейнер, <code>&lt;option&gt;</code> -
+        один вариант. Первый <code>&lt;option&gt;</code> с пустым
+        <code>value</code> часто используют как подсказку.
+      </p>
+
+      <h3>Многострочное поле: textarea</h3>
+
+      <pre><code>&lt;textarea name="message" rows="5" cols="30"&gt;&lt;/textarea&gt;</code></pre>
+
+      <p>
+        Для длинных текстов: отзывов, комментариев. <code>rows</code> -
+        количество строк, <code>cols</code> - ширина в символах.
+        <code>&lt;textarea&gt;</code> - парный тег, начальный текст пишется
+        между тегами.
+      </p>
+
+      <h3>Label - подпись к полю</h3>
+
+      <p>Два способа связать подпись с полем:</p>
+
+      <pre><code>&lt;label&gt;Имя: &lt;input type="text" name="username"&gt;&lt;/label&gt;</code></pre>
+
+      <p>Или через атрибут <code>for</code>:</p>
+
+      <pre><code>&lt;label for="username"&gt;Имя:&lt;/label&gt;
+&lt;input type="text" id="username" name="username"&gt;</code></pre>
+
+      <p>
+        <code>for</code> в <code>&lt;label&gt;</code> должен совпадать с
+        <code>id</code> в поле. Тогда клик по тексту подписи ставит курсор в
+        поле. Это удобно и важно для доступности.
+      </p>
+
+      <div class="note">
+        <strong>Второй способ без for:</strong> можно обернуть
+        <code>&lt;input&gt;</code> внутрь <code>&lt;label&gt;</code> - тогда
+        <code>for</code> и <code>id</code> не нужны. Связь работает
+        автоматически.
+      </div>
+
+      <h3>Кнопки</h3>
+
+      <p>Три типа кнопок:</p>
+
+      <ul>
+        <li><code>&lt;button type="submit"&gt;</code> - отправить форму</li>
+        <li><code>&lt;button type="reset"&gt;</code> - очистить все поля</li>
+        <li>
+          <code>&lt;button type="button"&gt;</code> - кнопка-заготовка, действие
+          программируется через JavaScript
+        </li>
+      </ul>
+
+      <pre><code>&lt;button type="submit"&gt;Отправить&lt;/button&gt;
+&lt;button type="reset"&gt;Очистить&lt;/button&gt;</code></pre>
+
+      <h3>Полезные атрибуты полей</h3>
+
+      <table>
+        <tr>
+          <th>Атрибут</th>
+          <th>Что делает</th>
+        </tr>
+        <tr>
+          <td><code>placeholder</code></td>
+          <td>Серая подсказка внутри поля. Исчезает при вводе</td>
+        </tr>
+        <tr>
+          <td><code>required</code></td>
+          <td>
+            Поле обязательно для заполнения. Браузер не даст отправить форму без
+            него
+          </td>
+        </tr>
+        <tr>
+          <td><code>value</code></td>
+          <td>Начальное значение поля</td>
+        </tr>
+        <tr>
+          <td><code>disabled</code></td>
+          <td>Поле отключено, нельзя редактировать</td>
+        </tr>
+        <tr>
+          <td><code>readonly</code></td>
+          <td>Только для чтения. Можно выделить, но не редактировать</td>
+        </tr>
+      </table>
+
+      <h4>accept - для загрузки файлов</h4>
+
+      <pre><code>&lt;input type="file" name="avatar" accept="image/*"&gt;</code></pre>
+
+      <p>
+        Фильтр для диалога выбора файла. Без <code>accept</code> можно выбрать
+        любой файл. С ним - только указанные типы:
+      </p>
+
+      <table>
+        <tr>
+          <th>Что нужно</th>
+          <th>Как написать</th>
+        </tr>
+        <tr>
+          <td>Любые картинки</td>
+          <td><code>accept="image/*"</code></td>
+        </tr>
+        <tr>
+          <td>Любое видео</td>
+          <td><code>accept="video/*"</code></td>
+        </tr>
+        <tr>
+          <td>Любой звук</td>
+          <td><code>accept="audio/*"</code></td>
+        </tr>
+        <tr>
+          <td>Только PDF</td>
+          <td><code>accept=".pdf"</code></td>
+        </tr>
+        <tr>
+          <td>Документы Word</td>
+          <td><code>accept=".doc,.docx"</code></td>
         </tr>
       </table>
     </div>
